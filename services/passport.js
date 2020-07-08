@@ -12,7 +12,8 @@ passport.use(
     {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
-      callbackURL: "/auth/google/callback",
+      callbackURL: "/auth/google/callback", //pr give whole url with https , else use below proxy line
+      proxy: true,
     },
     (accessToken, refreshToken, profile, done) => {
       // console.log("accessToken", accessToken);
