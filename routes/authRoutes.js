@@ -5,10 +5,17 @@ module.exports = (app) => {
     passport.authenticate("google", { scope: ["profile", "email"] })
   );
 
-  app.get("/auth/google/callback", passport.authenticate("google"));
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google"),
+    (req, res) => {
+      res.redirect("/surveys");
+    }
+  );
   app.get("/api/current_user", (req, res) => res.send(req.user));
-  app.get("/auth/logout", (req, res) => {
+  app.get("/api/logout", (req, res) => {
     req.logout(); //removes all session data
-    res.send(req.user); //now re.user no longer exists
+    //res.send(req.user); //now re.user no longer exists
+    res.redirect("/");
   });
 };
