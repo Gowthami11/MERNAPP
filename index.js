@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === "production") {
   //if it doesnt recognize the route
 
   app.use("*", (req, res) => {
-    res.sendDate(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 const PORT = process.env.PORT || 5000;
